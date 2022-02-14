@@ -1,6 +1,5 @@
 // vars
 var bookTitle = $("#book-search")
-var bookTitle = $("#book-search")
 var bookAuth = $("#book-author")
 var bookDescription = $("#book-description")
 var bookPoster = $("#book-image")
@@ -49,7 +48,7 @@ var displayBooks = function(title, searchTerm) {
 
     for (var i = 0; i < title.length; i++) {
         //format book name
-        var titleText = response.items[0].volumeInfo + "," + response.items[0].volumeInfo.authors;
+        var titleText = response.items[0].volumeInfo.title + "," + response.items[0].volumeInfo.authors;
 
         //create container for book
         var bookEl = document.createElement("div");
@@ -73,7 +72,6 @@ var displayBooks = function(title, searchTerm) {
 
 
 /* ADDING TEST CODE
-
 function fetchBookInfo() {
     console.log(bookTitle)
     fetch(apiUrlFirst + bookTitle)
@@ -83,28 +81,36 @@ function fetchBookInfo() {
                 console.log(data)
                 // renderPoster(data)
                 
-
             })
         }
     })
 }
-
 var displayBooks = function(title, bookTitle) {
     console.log(title);
     console.log(bookTitle);
 }
-
 // fetchBookInfo()
-
 function renderPoster(data){
     console.log(data)
     // bookPoster.attr("src", data.items.imageLinks.thumbnail)
     bookTitle.text(data.volumeInfo.title)
     bookDescription.text(data.volumeInfo.description)
-    bookAuth.text(data.volumeInfo.author)
-
+    bookAuth.text(data.volumeInfo.authors)
 }
-
 document.getElementById("search-btn").addEventListener("click", fetchBookInfo())
-
 ADDING TEST CODE*/
+
+let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+modalBtn.onclick = function(){
+  modal.style.display = "block"
+}
+closeBtn.onclick = function(){
+  modal.style.display = "none"
+}
+window.onclick = function(e){
+  if(e.target == modal){
+    modal.style.display = "none"
+  }
+}
